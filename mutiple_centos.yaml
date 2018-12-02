@@ -16,3 +16,4 @@ spec:
     name: centos2
     stdin: true
     tty: true
+    
