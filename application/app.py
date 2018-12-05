@@ -17,7 +17,8 @@ login_manager = LoginManager()
 
 # Set up Main config
 app.config['SECRET_KEY'] = 'qZjvXHxDv7Dcsv2a0IrmGZ5KNKZ10gO'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///DataBase/example.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://kube:redhat@18.223.21.227/kube'
+
 app.config['RECAPTCHA_PUBLIC_KEY'] = '6LcpbWAUAAAAAAHfKwXV_vDW3f5gP1ET0PHsvEOp'
 app.config['RECAPTCHA_PRIVATE_KEY'] = '6LcpbWAUAAAAABQidUSjPpv2K1AevKrTfSB9CYiN'
 app.config['TESTING'] = True
@@ -58,6 +59,9 @@ class User(db.Model, UserMixin):
     role = db.Column(db.String(10))
     group = db.Column(db.String(20))
 
+class pod_status(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    status = db.Column(db.String(10))
 
 @app.route('/create_user', methods=['POST'])
 @login_required_api
@@ -70,10 +74,20 @@ def craete_user(current_user):
     return jsonify({"response": "New user created!"})
 
 
+
 @app.route('/sets', methods=['GET', 'POST'])
 def get_set_data():
     data = request.get_json()
     return jsonify({'data': data})
+
+@app.route('/kube/<ready>', methods=['GET', 'POST'])
+def reainess(ready):
+    data = pod_status.query.filter_by(status='active').first()
+    if data.status == 'active':
+        if ready == data.status:
+            return jsonify({ 'message' : "This page is active" })
+        else:
+            return make_response(f'fscoding.com/kube/{ready} page not found.', 404)
 
 @app.route('/user', methods=['GET'])
 @login_required_api
