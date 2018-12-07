@@ -83,11 +83,14 @@ def get_set_data():
 @app.route('/kube/<ready>', methods=['GET', 'POST'])
 def reainess(ready):
     data = pod_status.query.filter_by(status='active').first()
-    if data.status == 'active':
-        if ready == data.status:
-            return jsonify({ 'message' : "This page is active" })
-        else:
-            return make_response(f'fscoding.com/kube/{ready} page not found.', 404)
+    if data:
+        if data.status == 'active':
+            if ready == data.status:
+                return jsonify({ 'message' : "This page is active" })
+            else:
+                return make_response(f'fscoding.com/kube/{ready} page not found.', 404)
+    else:
+        return make_response(f'fscoding.com/kube/{ready} page not found.', 404)
 
 @app.route('/user', methods=['GET'])
 @login_required_api
