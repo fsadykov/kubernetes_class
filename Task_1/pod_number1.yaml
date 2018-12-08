@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: centos
+  name: centos-39
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: fs-secondnode
+  tolerations:
+    - key: "key"
+      value: "value"
+      effect: "NoSchedule"
+
+  containers:
+  - image: centos
+    name: centos-39
+    stdin: true
+    tty: true

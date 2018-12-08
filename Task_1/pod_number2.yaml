@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: centos
+  name: centos-1
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: fs-secondnode
+  containers:
+  - image: centos
+    name: centos-1
+    stdin: true
+    tty: true
