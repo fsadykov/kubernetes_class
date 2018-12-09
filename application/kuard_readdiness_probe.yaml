@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: flask-api
+    run: flask-api
+  name: flask-api
+spec:
+  containers:
+  - image: fsadykov/flask-api:latest
+    name: flask-api
+    readinessProbe:
+      httpGet:
+        path: /kube/active
+        port: 5000
+      periodSeconds: 2
+      initialDelaySeconds: 5
+      failureThreshold: 3
+      successThreshold: 1
+    ports:
+    - containerPort: 5000
+      name: http
+      protocol: TCP

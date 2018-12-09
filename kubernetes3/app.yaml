@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: app
+  name: app
+spec:
+  containers:
+  - image: centos:7
+    name: centos7
+    stdin: true
+    tty: true 
+  - image: centos:6
+    name: centos6
+    stdin: true
+    tty: true 
+  - image: ubuntu
+    name: ubuntu
+    stdin: true
+    tty: true 
