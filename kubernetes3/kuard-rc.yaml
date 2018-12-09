@@ -5,7 +5,7 @@ metadata:
 spec:
   replicas: 3
   selector:
-    app: kuard-rc
+    app: kuard-rc-app
   template:
     metadata:
       labels:

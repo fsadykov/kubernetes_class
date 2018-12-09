@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    k8s-app: kuard-daemonset
+  name: kuard-daemonset
+spec:
+  selector:
+    matchLabels:
+      k8s-app: kuard
+  template:
+    metadata:
+      labels:
+        k8s-app: kuard
+    spec:
+      tolerations:
+      - effect: NoSchedule
+        key: dedicated
+        operator: Exists
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/master
+        operator: Exists
+      containers:
+      - image: gcr.io/kuar-demo/kuard-amd64:1
+        name: kuard
