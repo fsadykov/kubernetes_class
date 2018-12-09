@@ -99,3 +99,61 @@ spec:
     tty: true
 ```
 
+# We will create test pod from google 
+We will use `kuard`  image from google. This image created for testing purposes and this image will exposed to the maters external ip. This example file for kuard 
+``` kuard.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: kuard
+  name: kuard
+spec:
+  containers:
+  - image: gcr.io/kuar-demo/kuard-amd64:1
+    name: kuard
+    ports:
+    - containerPort: 8080
+      name: http
+      protocol: TCP
+```
+
+Create  pod 
+`kubectl apply -f kuard.yaml`
+
+Exapose pods port to Master ip(Cluster-ip)
+`kubectl expose pod kuard --type=ClusterIP --external-ip=165.227.67.15`
+
+![](README/Screen%20Shot%202018-12-02%20at%2012.23.40%20PM.png)
+
+
+# DemonSet on Kubernetes 
+Demon Set is one the resource type on the `kubernetes`. Which will crated exactly copy of the resource each nodes.
+
+# Requests resource from kubernetes
+On kubernetes you can reserve a resource. Let say I have application which should take more than 128M ram. I can reserve  that resource from the cluster. example `yaml` looks like this. 
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: myapp
+  name: myapp
+spec:
+  containers:
+  - image: gcr.io/kuar-demo/kuard-amd64:1
+    name: kuard
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+      limits:
+        cpu: "200m"
+        memory: "256Mi"
+    ports:
+    - containerPort: 8080
+      name: http
+      protocol: TCP
+```
+
+![](README/Screen%20Shot%202018-12-09%20at%2012.23.42%20PM.png)
