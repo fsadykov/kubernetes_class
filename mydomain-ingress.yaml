@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: mydomain-ingress
+spec:
+  rules:
+  - host: mydomain.com
+    http:
+      paths:
+      - path: /nginx
+        backend:
+          serviceName: nginx
+          servicePort: 8081
+      - path: /kubia
+        backend:
+          serviceName: kubia
+          servicePort: 8082
