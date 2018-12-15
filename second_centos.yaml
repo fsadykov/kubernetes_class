@@ -12,4 +12,3 @@ spec:
     name: centos
     stdin: true
     tty: true
-    
