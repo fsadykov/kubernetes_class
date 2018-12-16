@@ -8,10 +8,12 @@ spec:
   nodeSelector:
     kubernetes.io/hostname: fs-node
   containers:
+
   - image: centos
     name: centos1
     stdin: true
     tty: true
+
   - image: centos
     name: centos2
     stdin: true
