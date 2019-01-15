@@ -10,3 +10,4 @@ spec:
     envFrom:
     - configMapRef:
         name: app-config
+ 

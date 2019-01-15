@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: "2019-01-15T06:03:41Z"
+  name: ggckad-s2
+  resourceVersion: "2937014"
+  selfLink: /api/v1/namespaces/ggckad-s2
+  uid: 4effc8bb-188b-11e9-9149-000c29ec02d2
+spec:
+  finalizers:
+  - kubernetes
+status:
+  phase: Active

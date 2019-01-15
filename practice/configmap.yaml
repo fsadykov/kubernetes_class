@@ -1,8 +1,0 @@
-apiVersion: v1
-data:
-  connection_string: localhost:4096
-  external_url: google.com
-kind: ConfigMap
-metadata:
-  name: app-config
-  namespace: ggckad-s2
