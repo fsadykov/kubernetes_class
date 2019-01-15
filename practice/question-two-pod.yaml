@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: question-two-pod
+  namespace: ggckad-s2
+spec:
+  containers:
+  - image: kubegoldenguide/alpine-spin:1.0.0
+    name: container-a
+    envFrom:
+    - configMapRef:
+        name: app-config

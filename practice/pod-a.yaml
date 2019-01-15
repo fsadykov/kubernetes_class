@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: nginx
+  name: pod-a
+  namespace: ggckad-s0
+spec:
+  containers:
+  - image: kubegoldenguide/simple-http-server
+    name: container-a

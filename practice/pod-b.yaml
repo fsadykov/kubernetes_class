@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-b
+  namespace: ggckad-s0
+spec:
+  containers:
+  - image: kubegoldenguide/alpine-spin:1.0.0
+    name: container-a
+  - image: nginx:1.7.9
+    name: container-b
