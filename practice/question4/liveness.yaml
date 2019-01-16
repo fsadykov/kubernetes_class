@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: question-four
+  namespace: ggckad-s4 
+spec:
+  containers:
+  - name: liveness-readiness
+    image: kubegoldenguide/question-thirteen
+    ports:
+    - containerPort: 80
+    livenessProbe:
+      initialDelaySeconds: 16
+      periodSeconds: 10
+      httpGet:
+        path: /health
+        port: 80
+    readinessProbe:
+      httpGet:
+        path: /health
+        port: 80
+   
