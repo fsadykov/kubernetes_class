@@ -14,8 +14,10 @@ spec:
       periodSeconds: 10
       httpGet:
         path: /health
-        port: 80
+        port: 8080
     readinessProbe:
+      initialDelaySeconds: 5
+      periodSeconds: 10
       httpGet:
-        path: /health
-        port: 80
+        path: /started
+        port: 8080
