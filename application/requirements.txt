@@ -10,7 +10,7 @@ Click==7.0
 cryptography==2.4.2
 dominate==2.3.5
 Flask==0.12
-Flask-Admin==1.5.1
+Flask-Admin
 Flask-BabelEx==0.9.3
 Flask-Bootstrap==3.3.7.1
 Flask-Images==2.1.2
