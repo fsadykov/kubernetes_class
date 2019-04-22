@@ -6,7 +6,7 @@ metadata:
   name: pod-with-secret
 spec:
   containers:
-  - image: fsadykov/docker-testing:awd
+  - image: fsadykov/docker-testing
     name: secret-using
     command: ["python"]
     args: ["/app/app.py", "--name", "appone"]
